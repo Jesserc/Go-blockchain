@@ -25,7 +25,7 @@ func run() error {
 
 	tx := Tx{FromId: "0xff", ToId: "0xcc", Value: 250000}
 
-	privateKey, err := crypto.GenerateKey()
+	privateKey, err := crypto.LoadECDSA("zblock/accounts/jesserc.ecdsa")
 	if err != nil {
 		return fmt.Errorf("unable to generate private key: %w", err)
 	}
