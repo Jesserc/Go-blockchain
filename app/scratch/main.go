@@ -25,6 +25,7 @@ func run() error {
 
 	tx := Tx{FromId: "0xff", ToId: "0xcc", Value: 250000}
 
+	// privateKey, err := crypto.GenerateKey()
 	privateKey, err := crypto.LoadECDSA("zblock/accounts/jesserc.ecdsa")
 	if err != nil {
 		return fmt.Errorf("unable to generate private key: %w", err)
@@ -40,10 +41,21 @@ func run() error {
 	sig, err := crypto.Sign(v, privateKey)
 	// fmt.Printf("sig: %v\n", sig)
 	if err != nil {
-		return fmt.Errorf("unable to sign tx %w", err)
+		return fmt.Errorf("unable to sign tx: %w", err)
 	}
 
-	fmt.Printf("hex sig: %v\n", hexutil.Encode(sig))
-	// fmt.Println(string(sig))
+	fmt.Printf("SIG: %v\n\n", hexutil.Encode(sig))
+
+	// =============================================================================
+	// BROADCAST THE SIGNATURE OVER THE NETWORK
+
+	publicKey, err := crypto.SigToPub(v, sig)
+	if err != nil {
+		return fmt.Errorf("unable to generate public key: %w", err)
+	}
+
+	pk := crypto.PubkeyToAddress(*publicKey).String()
+
+	fmt.Printf("PUBLIC KEY: %v\n\n", pk)
 	return nil
 }
