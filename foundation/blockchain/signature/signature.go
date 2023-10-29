@@ -2,32 +2,52 @@ package signature
 
 import (
 	"crypto/ecdsa"
-	"encoding/hex"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"math/big"
 
-	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/crypto"
 )
+
+// jessercID is an arbitrary number for signing messages. This will make it
+// clear that the signature comes from the Jesserc blockchain.
+// Ethereum and Bitcoin do this as well, but they use the value of 27.
+const jessercID = 29
 
 // Sign uses the specified private key to sign the data.
 func Sign(value any, privateKey *ecdsa.PrivateKey) (v, r, s *big.Int, err error) {
 
+	// Prepare the data for signing.
 	data, err := stamp(value)
 	if err != nil {
 		return nil, nil, nil, err
 	}
 
+	// Sign the hash with the private key to produce a signature.
 	sig, err := crypto.Sign(data, privateKey)
 	if err != nil {
 		return nil, nil, nil, err
 	}
 
-	v, r, s, err = ToVRSFromHexSignature(hexutil.Encode(sig))
-	if err != nil {
-		return nil, nil, nil, err
+	// Extract the bytes for the original public key.
+	publicKeyOrg := privateKey.Public()
+
+	// Type assertion (assert and cast the pubkey to type ecdsa.PublicKey, ok will be false if this fails)
+	publicKeyECDSA, ok := publicKeyOrg.(*ecdsa.PublicKey)
+	if !ok {
+		return nil, nil, nil, errors.New("error casting public key to ECDSA")
 	}
+	publicKeyBytes := crypto.FromECDSAPub(publicKeyECDSA)
+
+	// Check the public key validates the data and signature.
+	rs := sig[:crypto.RecoveryIDOffset]
+	if !crypto.VerifySignature(publicKeyBytes, data, rs) {
+		return nil, nil, nil, errors.New("invalid signature produced")
+	}
+
+	// Convert the 65 byte signature into the [R|S|V] format.
+	v, r, s = toSignatureValues(sig)
 
 	return v, r, s, nil
 }
@@ -56,16 +76,11 @@ func stamp(value any) ([]byte, error) {
 	return hash, nil
 }
 
-func ToVRSFromHexSignature(sigStr string) (v, r, s *big.Int, err error) {
-	sig, err := hex.DecodeString(sigStr[2:])
-	if err != nil {
-		return nil, nil, nil, err
-	}
-
-	// extract v,r,s
+// toSignatureValues converts the signature into the r, s, v values.
+func toSignatureValues(sig []byte) (v, r, s *big.Int) {
 	r = big.NewInt(0).SetBytes(sig[:32])
 	s = big.NewInt(0).SetBytes(sig[32:64])
-	v = big.NewInt(0).SetBytes([]byte{sig[64]})
+	v = big.NewInt(0).SetBytes([]byte{sig[64] + jessercID})
 
-	return v, r, s, nil
+	return v, r, s
 }
