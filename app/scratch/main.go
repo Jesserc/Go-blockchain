@@ -121,9 +121,16 @@ func run() error {
 	fmt.Printf("vrs of signature two:\nv: %d, r: %d, s: %d\n\n", v, r, s)
 
 	// =============================================================================
-	fmt.Println("// ================ New Tx ================ // ")
+	fmt.Println("====================================== New Tx =======================================")
 
-	newTx, err := database.NewTx(1, 0, "0xa97a146642b60Fbc7E1b096455F6D144b15fd75d", "0xffac146642b60Fbc7E1b096455F6D144b15fdfff", 100000, 10, []byte(""))
+	newTx, err := database.NewTx(
+		1,
+		0, "0xa97a146642b60Fbc7E1b096455F6D144b15fd75d",
+		"0xffac146642b60Fbc7E1b096455F6D144b15fdfff",
+		100000,
+		10, []byte("Hello Jesserc"),
+	)
+
 	if err != nil {
 		return fmt.Errorf("unable to create tx: %w", err)
 	}
@@ -134,7 +141,7 @@ func run() error {
 	if err != nil {
 		return fmt.Errorf("unable to sign new tx: %w", err)
 	}
-	fmt.Printf("signedTx: %v\n", signedTx)
+	fmt.Printf("signedTx:\n %v\n", signedTx)
 
 	return nil
 }
