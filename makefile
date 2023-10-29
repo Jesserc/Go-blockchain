@@ -1,6 +1,7 @@
 SHELL := /bin/bash
 
 # Wallets
+# Jesserc: 0xa97a146642b60Fbc7E1b096455F6D144b15fd75d
 # Kennedy: 0xF01813E4B85e178A83e29B8E7bF26BD830a25f32
 # Pavel: 0xdd6B972ffcc631a62CAE1BB9d80b7ff429c8ebA4
 # Ceasar: 0xbEE6ACE826eC3DE1B6349888B9151B92522F7F76
@@ -25,7 +26,7 @@ SHELL := /bin/bash
 # Local support
 run:
 	 go run app/scratch/main.go
-	 
+
 up:
 	go run app/services/node/main.go -race | go run app/tooling/logfmt/main.go
 
