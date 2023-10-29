@@ -1,5 +1,7 @@
 # Ultimate Go: Advanced Engineering - Template
 
+## Built on http network and not JSON-RPC
+
 [![Go Report Card](https://goreportcard.com/badge/github.com/ardanlabs/blockchain)](https://goreportcard.com/report/github.com/ardanlabs/blockchain)
 [![go.mod Go version](https://img.shields.io/github/go-mod/go-version/ardanlabs/blockchain)](https://github.com/ardanlabs/blockchain)
 
@@ -36,17 +38,17 @@ Ardan Labs (www.ardanlabs.com)
 hello@ardanlabs.com
 
 To attend any of our high-performance tranings check out this link:  
-https://www.ardanlabs.com/training  
+https://www.ardanlabs.com/training
 
 ## Index
 
-* [Purchase Video](https://github.com/ardanlabs/blockchain#purchase-video)
-* [Experience](https://github.com/ardanlabs/blockchain#our-experience)
-* [Teacher](https://github.com/ardanlabs/blockchain#our-teacher)
-* [More About Go](https://github.com/ardanlabs/blockchain#more-about-go)
-* [Minimal Qualified Student](https://github.com/ardanlabs/blockchain#minimal-qualified-student)
-* [Important Reading](https://github.com/ardanlabs/blockchain#important-reading)
-* [Before You Come To Class](https://github.com/ardanlabs/blockchain#before-you-come-to-class)
+- [Purchase Video](https://github.com/ardanlabs/blockchain#purchase-video)
+- [Experience](https://github.com/ardanlabs/blockchain#our-experience)
+- [Teacher](https://github.com/ardanlabs/blockchain#our-teacher)
+- [More About Go](https://github.com/ardanlabs/blockchain#more-about-go)
+- [Minimal Qualified Student](https://github.com/ardanlabs/blockchain#minimal-qualified-student)
+- [Important Reading](https://github.com/ardanlabs/blockchain#important-reading)
+- [Before You Come To Class](https://github.com/ardanlabs/blockchain#before-you-come-to-class)
 
 ## Purchase Video
 
@@ -62,7 +64,8 @@ Our classes are perfect for intermediate-level developers who have at least a fe
 
 ## Our Teacher
 
-### William Kennedy ([@goinggodotnet](https://twitter.com/goinggodotnet))  
+### William Kennedy ([@goinggodotnet](https://twitter.com/goinggodotnet))
+
 _William Kennedy is a managing partner at Ardan Labs in Miami, Florida, a mobile, web, and systems development company. Bill has written extensively on the Ardan Labs blog, has written two books, and has trained thousands of developers worldwide in Go. Bill is also a founding member of GoBridge, which is working to increase Go adoption through diversity._
 
 _**Video Training**_  
@@ -70,11 +73,11 @@ _**Video Training**_
 [Ardan Labs YouTube Channel](http://youtube.ardanlabs.com/)
 
 _**Blog**_  
-[Going Go](https://www.ardanlabs.com/blog/)    
+[Going Go](https://www.ardanlabs.com/blog/)
 
 _**Writing**_  
-[Running MongoDB Queries Concurrently With Go](http://blog.mongodb.org/post/80579086742/running-mongodb-queries-concurrently-with-go)    
-[Go In Action](https://www.manning.com/books/go-in-action)  
+[Running MongoDB Queries Concurrently With Go](http://blog.mongodb.org/post/80579086742/running-mongodb-queries-concurrently-with-go)  
+[Go In Action](https://www.manning.com/books/go-in-action)
 
 _**Articles**_  
 [IT World Canada](http://www.itworldcanada.com/article/nascent-google-development-language-shows-promise-for-more-productive-coding/387449)
@@ -101,7 +104,7 @@ _**Video**_
 [GopherCon India (2015) - Go In Action](https://www.youtube.com/watch?v=QkPw8-Pf0SM)  
 [GolangUK (2016) - Dependency Management](https://youtu.be/CdhucJShJU8)  
 [GothamGo (2015) - Error Handling in Go](https://vimeo.com/115782573)  
-[GopherCon (2014) - Building an analytics engine](https://www.youtube.com/watch?v=EfJRQ1lGkUk)  
+[GopherCon (2014) - Building an analytics engine](https://www.youtube.com/watch?v=EfJRQ1lGkUk)
 
 [Prague Meetup (2021) - Go Module Engineering Decisions](https://youtu.be/m8lgcXv2lhI)  
 [Practical Understanding Of Scheduler Semantics (2021)](https://www.youtube.com/watch?v=p2Cjq3Dq2Q0)  
@@ -111,9 +114,9 @@ _**Video**_
 [Vancouver Meetup (2016) - Go Talk & Ask Me Anything With William Kennedy](https://www.youtube.com/watch?v=7YcLIbG1ekM&t=91s)  
 [Vancouver Meetup (2015) - Compiler Optimizations in Go](https://www.youtube.com/watch?v=AQipeq39Aek)  
 [Bangalore Meetup (2015) - OOP in Go](https://youtu.be/gRpUfjTwSOo)  
-[GoSF Meetup - The Nature of Constants in Go](https://www.youtube.com/watch?v=ZUCHMAoOgUQ)    
-[London Meetup - Mechanical Sympathy](https://skillsmatter.com/skillscasts/8353-london-go-usergroup)    
-[Vancouver Meetup - Decoupling From Change](https://www.youtube.com/watch?v=7YcLIbG1ekM&feature=youtu.be)  
+[GoSF Meetup - The Nature of Constants in Go](https://www.youtube.com/watch?v=ZUCHMAoOgUQ)  
+[London Meetup - Mechanical Sympathy](https://skillsmatter.com/skillscasts/8353-london-go-usergroup)  
+[Vancouver Meetup - Decoupling From Change](https://www.youtube.com/watch?v=7YcLIbG1ekM&feature=youtu.be)
 
 _**Podcasts**_  
 [Ardan Labs Podcast: On Going Series](https://ardanlabs.buzzsprout.com/)  
@@ -122,8 +125,8 @@ _**Podcasts**_
 [GoTime: Learning and Teaching Go](https://changelog.com/gotime/72)  
 [GoTime: Bill Kennedy on Mechanical Sympathy](https://changelog.com/gotime/6)  
 [GoTime: Discussing Imposter Syndrome](https://changelog.com/gotime/30)  
-[HelloTechPros: Your Tech Interviews are Scaring Away Brilliant People](http://hellotechpros.com/william-kennedy-people)    
-[HelloTechPros: The 4 Cornerstones of Writing Software](http://hellotechpros.com/bill-kennedy-productivity)  
+[HelloTechPros: Your Tech Interviews are Scaring Away Brilliant People](http://hellotechpros.com/william-kennedy-people)  
+[HelloTechPros: The 4 Cornerstones of Writing Software](http://hellotechpros.com/bill-kennedy-productivity)
 
 ## More About Go
 
@@ -137,20 +140,20 @@ Go is the fusion of performance and productivity wrapped in a language that soft
 [The eigenvector of "Why we moved from language X to language Y"](https://erikbern.com/2017/03/15/the-eigenvector-of-why-we-moved-from-language-x-to-language-y.html) - Erik Bernhardsson  
 [Learn More](https://talks.golang.org/2012/splash.article) - Go Team  
 [Simplicity is Complicated](https://www.youtube.com/watch?v=rFejpH_tAHM) - Rob Pike  
-[Getting Started In Go](http://aarti.github.io/2016/08/13/getting-started-in-go) - Aarti Parikh  
+[Getting Started In Go](http://aarti.github.io/2016/08/13/getting-started-in-go) - Aarti Parikh
 
 ## Minimal Qualified Student
 
 The material has been designed to be taught in a classroom environment. The code is well commented but missing some contextual concepts and ideas that will be covered in class. Students with the following minimal background will get the most out of the class.
 
-* Studied CS in school or has a minimum of two years of experience programming full time professionally.
-* Familiar with structural and object oriented programming styles.
-* Has worked with arrays, lists, queues and stacks.
-* Understands processes, threads and synchronization at a high level.
-* Operating Systems
-	* Has worked with a command shell.
-	* Knows how to maneuver around the file system.
-	* Understands what environment variables are.
+- Studied CS in school or has a minimum of two years of experience programming full time professionally.
+- Familiar with structural and object oriented programming styles.
+- Has worked with arrays, lists, queues and stacks.
+- Understands processes, threads and synchronization at a high level.
+- Operating Systems
+  - Has worked with a command shell.
+  - Knows how to maneuver around the file system.
+  - Understands what environment variables are.
 
 ## Important Reading
 
@@ -158,7 +161,7 @@ Please check out this page of [important reading](.documentation/reading/README.
 
 ## Before You Come To Class
 
-The following is a set of tasks that can be done prior to showing up for class.  We will also do this in class if anyone has not completed it.  However, the more attendees that complete this ahead of time the more time we have to cover additional training material.
+The following is a set of tasks that can be done prior to showing up for class. We will also do this in class if anyone has not completed it. However, the more attendees that complete this ahead of time the more time we have to cover additional training material.
 
 ### Prep Work
 
@@ -166,14 +169,14 @@ The following is a set of tasks that can be done prior to showing up for class. 
 
 The Ultimate Go and Service classes are critical classes to understanding the code in this class.  
 [Ultimate Go Classes](https://www.ardanlabs.com/ultimate-go/#tabpanel)  
-[Scholarship](https://docs.google.com/forms/d/e/1FAIpQLSchEz6zg1fseR2XiIZgNB8Qm2a5JDB7n3EOWX5GeIP18OstaQ/viewform)  
+[Scholarship](https://docs.google.com/forms/d/e/1FAIpQLSchEz6zg1fseR2XiIZgNB8Qm2a5JDB7n3EOWX5GeIP18OstaQ/viewform)
 
 This is a free and great class to learning concepts behind blockchains. Watch videos 1, 2, 6 and 8.  
-[Blockchain Class](https://cryptocurrencyclass.github.io/) - Patrick McCorry  
+[Blockchain Class](https://cryptocurrencyclass.github.io/) - Patrick McCorry
 
 ### Joining the Go Slack Community
 
-We use a Slack channel to share links, code, and examples during the training.  This is free.  This is also the same Slack community you will use after training to ask for help and interact with may Go experts around the world in the community.
+We use a Slack channel to share links, code, and examples during the training. This is free. This is also the same Slack community you will use after training to ask for help and interact with may Go experts around the world in the community.
 
 1. Using the following link, fill out your name and email address: https://gophersinvite.herokuapp.com/
 1. Check your email, and follow the link to the slack application.
@@ -182,7 +185,7 @@ We use a Slack channel to share links, code, and examples during the training.  
 
 ### Installing the Training Material
 
-While many of the examples can be done using the online playground (http://play.golang.org), some may find it easier to complete them with their local editor.  To do so, you will want to load the training material locally to your machine.  From a command prompt, issue the following commands:
+While many of the examples can be done using the online playground (http://play.golang.org), some may find it easier to complete them with their local editor. To do so, you will want to load the training material locally to your machine. From a command prompt, issue the following commands:
 
 ```
 $ cd $HOME
@@ -192,5 +195,6 @@ $ git clone https://github.com/ardanlabs/blockchain
 $ cd blockchain
 ```
 
-___
+---
+
 All material is licensed under the [Apache License Version 2.0, January 2004](http://www.apache.org/licenses/LICENSE-2.0).
