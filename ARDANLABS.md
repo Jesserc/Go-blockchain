@@ -2,6 +2,8 @@
 
 ## Built on http network and not JSON-RPC
 
+***app/scratch/ contains test development files***
+
 [![Go Report Card](https://goreportcard.com/badge/github.com/ardanlabs/blockchain)](https://goreportcard.com/report/github.com/ardanlabs/blockchain)
 [![go.mod Go version](https://img.shields.io/github/go-mod/go-version/ardanlabs/blockchain)](https://github.com/ardanlabs/blockchain)
 

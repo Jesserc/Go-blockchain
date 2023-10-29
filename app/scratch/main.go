@@ -98,7 +98,7 @@ func run() error {
 	// r => first 32 bytes of the signature
 	// s => second 32 bytes of the signature
 	// v => last one byte of the signature
-	// by default, v is either 0 or 1, but Ethereum customized it's signature implementation to end with 1c or 1b
+	// by default, v is either 00 or 01, but Ethereum customized it's signature implementation to end with 1c (for 01) or 1b (for 00)
 	// we'll do a similar thing
 	fmt.Printf("SIG 2: %v\n\n", hexutil.Encode(sig2))
 
