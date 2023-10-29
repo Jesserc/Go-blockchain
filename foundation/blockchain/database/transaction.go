@@ -1,6 +1,9 @@
 package database
 
-
+import (
+	"errors"
+	"math/big"
+)
 
 // Tx is the transactional information between two parties.
 type Tx struct {
@@ -11,4 +14,40 @@ type Tx struct {
 	Value   uint64    `json:"value"`    // Ethereum: Monetary value received from this transaction.
 	Tip     uint64    `json:"tip"`      // Ethereum: Tip offered by the sender as an incentive to mine this transaction.
 	Data    []byte    `json:"data"`     // Ethereum: Extra data related to the transaction.
+}
+
+// NewTX constructs a new transaction
+
+func NewTx(chainID uint16, nonce uint64, fromID AccountID, toID AccountID, value uint64, tip uint64, data []byte) (Tx, error) {
+
+	if !fromID.isAccountID() {
+		return Tx{}, errors.New("invalid from account, check formatting")
+	}
+
+	if !toID.isAccountID() {
+		return Tx{}, errors.New("invalid to account, check formatting")
+	}
+
+	tx := Tx{
+		ChainID: chainID,
+		Nonce:   nonce,
+		FromID:  fromID,
+		ToID:    toID,
+		Value:   value,
+		Tip:     tip,
+		Data:    data,
+	}
+
+	return tx, nil
+}
+
+// =============================================================================
+
+// SignedTx is a signed version of the transaction. This is how clients like
+// a wallet provide transactions for inclusion into the blockchain.
+type SignedTx struct {
+	Tx
+	V *big.Int `json:"v"` // Ethereum: Recovery identifier (1c or 1d for Ethereum), either 29 or 30 with jessercID.
+	R *big.Int `json:"r"` // Ethereum: First coordinate of the ECDSA signature.
+	S *big.Int `json:"s"` // Ethereum: Second coordinate of the ECDSA signature.
 }
