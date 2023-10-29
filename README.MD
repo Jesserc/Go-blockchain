@@ -1,1 +1,1 @@
-# Blockchain Implementation in GO
+# POW Blockchain in Go
