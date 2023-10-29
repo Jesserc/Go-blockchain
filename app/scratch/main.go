@@ -125,10 +125,12 @@ func run() error {
 
 	newTx, err := database.NewTx(
 		1,
-		0, "0xa97a146642b60Fbc7E1b096455F6D144b15fd75d",
+		0,
+		"0xa97a146642b60Fbc7E1b096455F6D144b15fd75d",
 		"0xffac146642b60Fbc7E1b096455F6D144b15fdfff",
 		100000,
-		10, []byte("Hello Jesserc"),
+		10,
+		[]byte("Hello Jesserc"),
 	)
 
 	if err != nil {
