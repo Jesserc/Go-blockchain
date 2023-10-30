@@ -129,8 +129,8 @@ func run() error {
 		"0xa97a146642b60Fbc7E1b096455F6D144b15fd75d",
 		"0xffac146642b60Fbc7E1b096455F6D144b15fdfff",
 		100000,
-		10,
-		[]byte("Hello Jesserc"),
+		0,
+		[]byte("Sent by Jesserc"),
 	)
 
 	if err != nil {
