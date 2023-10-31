@@ -121,7 +121,7 @@ func run() error {
 	fmt.Printf("vrs of signature two:\nv: %d, r: %d, s: %d\n\n", v, r, s)
 
 	// =============================================================================
-	fmt.Println("====================================== New Tx =======================================")
+	fmt.Println("====================================== New Tx ======================================")
 
 	newTx, err := database.NewTx(
 		1,
@@ -143,7 +143,7 @@ func run() error {
 	if err != nil {
 		return fmt.Errorf("unable to sign new tx: %w", err)
 	}
-	fmt.Printf("signedTx:\n %v\n", signedTx)
+	fmt.Printf("Signed Transaction:\n %v\n", signedTx)
 
 	return nil
 }
