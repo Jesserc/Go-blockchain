@@ -9,6 +9,4 @@
 - [Ardan Labs Ultimate Go: Advanced Engineering](https://courses.ardanlabs.com/bundles/Ardanlabsonline)
 - [What is RPC? gRPC introduction (Local Procedure Call vs Remote Procedure Call)](https://youtube.com/watch?v=gnchfOojMk4&si=tMMNjwVFHW93n-0s)
 
-#
-
 > **_app/scratch/... contains test development files_**
