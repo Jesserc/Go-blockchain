@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"math/big"
 
+	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/crypto"
 )
 
@@ -14,6 +15,8 @@ import (
 // clear that the signature comes from the Jesserc blockchain.
 // Ethereum and Bitcoin do this as well, but they use the value of 27.
 const jessercID = 29
+
+// =============================================================================
 
 // Sign uses the specified private key to sign the data.
 func Sign(value any, privateKey *ecdsa.PrivateKey) (v, r, s *big.Int, err error) {
@@ -32,7 +35,6 @@ func Sign(value any, privateKey *ecdsa.PrivateKey) (v, r, s *big.Int, err error)
 
 	// Extract the bytes for the original public key.
 	publicKeyOrg := privateKey.Public()
-
 	// Type assertion (assert and cast the pubkey to type ecdsa.PublicKey, ok will be false if this fails)
 	publicKeyECDSA, ok := publicKeyOrg.(*ecdsa.PublicKey)
 	if !ok {
@@ -41,6 +43,7 @@ func Sign(value any, privateKey *ecdsa.PrivateKey) (v, r, s *big.Int, err error)
 	publicKeyBytes := crypto.FromECDSAPub(publicKeyECDSA)
 
 	// Check the public key validates the data and signature.
+	// rs gets the recovery id, Jesserc id
 	rs := sig[:crypto.RecoveryIDOffset]
 	if !crypto.VerifySignature(publicKeyBytes, data, rs) {
 		return nil, nil, nil, errors.New("invalid signature produced")
@@ -52,7 +55,77 @@ func Sign(value any, privateKey *ecdsa.PrivateKey) (v, r, s *big.Int, err error)
 	return v, r, s, nil
 }
 
+// VerifySignature verifies the signature conforms to our standards.
+func VerifySignature(v, r, s *big.Int) error {
+
+	uintV := v.Uint64() - jessercID
+	if uintV != 0 && uintV != 1 {
+		return errors.New("invalid signature recovery id")
+	}
+
+	if !crypto.ValidateSignatureValues(byte(uintV), r, s, false) {
+		return errors.New("invalid signature values")
+	}
+
+	return nil
+}
+
+// FromAddress extracts the address for the account that signed the data.
+func FromAddress(value any, v, r, s *big.Int) (string, error) {
+	// Prepare the data for public key extraction.
+	data, err := stamp(value)
+	if err != nil {
+		return "", err
+	}
+
+	// Convert the [R|S|V] format into the original 65 bytes.
+	sig := ToSignatureBytes(v, r, s)
+
+	// Get the public key associated with the signature
+	publicKey, err := crypto.SigToPub(data, sig)
+	if err != nil {
+		return "", err
+	}
+
+	address := crypto.PubkeyToAddress(*publicKey).String()
+	return address, nil
+}
+
+// ToSignatureBytes converts the r, s, v values into a slice of bytes
+// with the removal of the jessercID.
+func ToSignatureBytes(v, r, s *big.Int) []byte {
+	sig := make([]byte, crypto.SignatureLength)
+
+	rBytes := make([]byte, 32) // r and v are 32 bytes each in the signature
+	r.FillBytes(rBytes)
+	copy(sig, rBytes)
+
+	sBytes := make([]byte, 32) // r and v are 32 bytes each in the signature
+	s.FillBytes(sBytes)
+	copy(sig[32:], sBytes)
+
+	sig[64] = byte(v.Uint64() - jessercID) // remove our custom id to get original 1 byte v value
+
+	return sig
+}
+
 // =============================================================================
+
+// SignatureString returns the signature as a string.
+func SignatureString(v, r, s *big.Int) string {
+	return hexutil.Encode(ToSignatureBytesWithJessercID(v, r, s))
+}
+
+// ToSignatureBytesWithArdanID converts the r, s, v values into a slice of bytes
+// keeping the Jesserc id.
+func ToSignatureBytesWithJessercID(v, r, s *big.Int) []byte {
+	sig := ToSignatureBytes(v, r, s)
+	// we set the last value of the sig bytes to the original V value, which is the Jesserc id
+	// The reason for this is because the ToSignatureBytes function removes the Jesserc id.
+	// This function is meant to have the same logic with the ToSignatureBytes function, except that it preserves the Jesserc id.
+	sig[64] = byte(v.Uint64())
+	return sig
+}
 
 // stamp returns a hash of 32 bytes that represents this data with
 // the Jesserc stamp embedded into the final hash.

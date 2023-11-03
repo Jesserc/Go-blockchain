@@ -143,7 +143,16 @@ func run() error {
 	if err != nil {
 		return fmt.Errorf("unable to sign new tx: %w", err)
 	}
+
 	fmt.Printf("Signed Transaction:\n %v\n", signedTx)
+
+	err = signedTx.Validate(1)
+	if err != nil {
+		return fmt.Errorf("unable to validate tx: %w", err)
+	}
+
+	// sigAsString := signedTx.SignatureString()
+	// fmt.Printf("sigAsString: %v\n", sigAsString)
 
 	return nil
 }
